@@ -1,0 +1,27 @@
+cách tạo phím tắt cho terminal win
+
+- gõ Test-Path $PROFILE (false: chưa tồn tại)
+- gõ New-Item -Type File -Path $PROFILE -Force (tạo $PROFILE - $PROFILE là bắt buộc)
+- gõ notepad $PROFILE (mở notepad)
+- thêm function cần thiết (*). Save bình thường
+- gõ . $PROFILE hoặc (tắt đi mở lại)
+
+(*) ví dụ
+function StartLaravel {
+    $projectName = Read-Host "Project Name"
+    if ($projectName) {
+        composer create-project laravel/laravel $projectName
+    } else {
+        Write-Host "Không nhập tên dự án, không thực hiện lệnh"
+    }
+}
+
+function StartWP {
+    $url = "https://wordpress.org/latest.tar.gz"
+    $destination = Join-Path -Path $PWD -ChildPath "wordpress.tar.gz" (sẽ lưu tại nơi mà terminal mở)
+    Invoke-WebRequest -Uri $url -OutFile $destination
+}
+ 
+
+
+
